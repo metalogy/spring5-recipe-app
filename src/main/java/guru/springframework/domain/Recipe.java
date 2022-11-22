@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -22,6 +23,9 @@ public class Recipe {
     @OneToOne
     @Cascade(CascadeType.ALL)
     private Notes notes;
+
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
 
     public Long getId() {
         return id;
